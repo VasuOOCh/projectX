@@ -2,32 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --bg-black-main : rgb(20, 20, 20);
+    --bg-black-sec : rgb(30, 30, 30);
+    --bg-black-tert : rgb(45, 45, 45);
+    --text-main : white;
+    --text-soft :rgb(236, 236, 236);
+  }
+  
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+*::-webkit-scrollbar{
+  width: 10px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+*::-webkit-scrollbar-track {
+  background: var(--bg-black-sec);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--bg-black-tert);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: var(--bg-black-main);
+  color: var(--text-main)
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+input{
+  background-color: inherit;
 }
