@@ -8,6 +8,7 @@ import {
     SignedOut,
     UserButton
 } from '@clerk/nextjs'
+import Upload from '../UploadComp/UploadBtn';
 
 const Navbar = () => {
     return (
@@ -34,10 +35,12 @@ const Navbar = () => {
                 </SignedOut>
                 <SignedIn>
                     <div className='flex gap-4 items-center'>
-                    <div className='flex gap-1 text-sm items-center bg-[--bg-black-tert] rounded-2xl py-1 px-2 '>
+                    <Link href={'/upload'} className='flex gap-1 text-sm items-center bg-[--bg-black-tert] rounded-2xl py-1 px-2 '>
+                        
                         <VideocamIcon />
                         <span>Upload</span>
-                    </div>
+                    </Link>
+                    
                     <UserButton />
                     </div>
                 </SignedIn>

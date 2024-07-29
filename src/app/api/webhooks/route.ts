@@ -5,7 +5,7 @@ import { User } from '@/lib/models'
 import { connectToDb } from '@/lib/utils'
 
 export async function POST(req: Request) {
-
+    
     // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
 
@@ -18,6 +18,7 @@ export async function POST(req: Request) {
     const svix_id = headerPayload.get("svix-id");
     const svix_timestamp = headerPayload.get("svix-timestamp");
     const svix_signature = headerPayload.get("svix-signature");
+    
 
     // If there are no headers, error out
     if (!svix_id || !svix_timestamp || !svix_signature) {
@@ -67,7 +68,40 @@ export async function POST(req: Request) {
             })
 
             await newUser.save();
-            return new Response('', { status: 201 })
+            return new Response('User created', { status: 201 })
+        } catch (error) {
+            console.log(error);
+            return new Response('Error in establising user', {
+                status : 500
+            })
+        }
+    }
+    if(eventType == "user.updated") {
+        try {
+            await connectToDb()
+
+            const updatedUser = await User.findOneAndUpdate({userId : payload.data.id}, {
+                firstName: payload.data.first_name,
+                lastName: payload.data.last_name,
+                avatar : payload.data.image_url
+            }, {new : true});
+
+            return new Response('User updated', { status: 201 })
+        } catch (error) {
+            console.log(error);
+            return new Response('Error in establising user', {
+                status : 500
+            })
+        }
+    }
+
+    if(eventType == "user.deleted") {
+        try {
+            await connectToDb()
+
+            await User.findOneAndDelete({userId : payload.data.id});
+
+            return new Response('User deleted', { status: 201 })
         } catch (error) {
             console.log(error);
             return new Response('Error in establising user', {

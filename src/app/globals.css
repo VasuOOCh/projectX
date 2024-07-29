@@ -52,3 +52,15 @@ a{
 input{
   background-color: inherit;
 }
+
+@layer components{
+  .videoToolsSection{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background-color: var(--bg-black-sec);
+    border-radius: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+}
