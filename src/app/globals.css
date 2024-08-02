@@ -41,7 +41,8 @@
 
 body{
   background-color: var(--bg-black-main);
-  color: var(--text-main)
+  color: var(--text-main);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a{
@@ -54,6 +55,15 @@ input{
 }
 
 @layer components{
+
+
+  .noScrollbar{}
+
+  .noScrollbar::-webkit-scrollbar{
+    width: 0px;
+  }
+
+
   .videoToolsSection{
     display: flex;
     gap: 5px;

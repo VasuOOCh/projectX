@@ -10,7 +10,7 @@ export const GET = async (req : NextRequest, {params} : {params : requestParams}
     
     try {
         connectToDb()
-        const video = await Video.findById(params.id)
+        const video = await Video.findById(params.id).populate('user')
         
         return NextResponse.json(video, {
             status : 200

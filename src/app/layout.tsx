@@ -6,7 +6,7 @@ import {
   ClerkProvider,
 } from '@clerk/nextjs'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,9 +22,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-col h-[100vh] mx-auto md:w-[95%] lg:w-[90%]">
+        <div className="flex flex-col mx-auto md:w-[95%] lg:w-[90%]">
           <Navbar />
-          <div className="flex-1">
+          <div className="flex-1 h-full">
           {children}
           </div>
         </div>

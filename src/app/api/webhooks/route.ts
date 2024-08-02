@@ -77,6 +77,7 @@ export async function POST(req: Request) {
         }
     }
     if(eventType == "user.updated") {
+        
         try {
             await connectToDb()
 
@@ -85,7 +86,7 @@ export async function POST(req: Request) {
                 lastName: payload.data.last_name,
                 avatar : payload.data.image_url
             }, {new : true});
-
+            
             return new Response('User updated', { status: 201 })
         } catch (error) {
             console.log(error);

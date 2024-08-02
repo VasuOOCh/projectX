@@ -18,7 +18,9 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
         default: "https://images.pexels.com/photos/4009599/pexels-photo-4009599.jpeg?auto=compress&cs=tinysrgb&w=600"
-    }
+    },
+    subscribers : [String],
+    subscribedUsers : [String]
 
 }, { timestamps: true });
 
@@ -31,9 +33,10 @@ const VideoSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    userId: {
-        type: String,
-        required: true
+    user: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+        ref : 'User'
     },
     title: {
         type: String,
@@ -49,7 +52,25 @@ const VideoSchema = new mongoose.Schema({
         type: Number,
         default: 0
     }
-})
+}, {timestamps : true})
+
+const commentSchema = new mongoose.Schema({
+    text : {
+        type : String,
+        required : true
+    },
+    user : {
+        type : mongoose.Types.ObjectId,
+        ref : "User",
+    },
+    videoId : {
+        type : String,
+        required : true
+    },
+    likes : [String],
+    dislikes: [String]
+}, {timestamps : true})
 
 export const User = mongoose.models?.User || mongoose.model("User", userSchema);
 export const Video = mongoose.models?.Video || mongoose.model("Video", VideoSchema);
+export const Comment = mongoose.models?.Comment || mongoose.model("Comment", commentSchema);

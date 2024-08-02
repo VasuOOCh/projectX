@@ -1,6 +1,5 @@
 import React from 'react'
 import VideocamIcon from '@mui/icons-material/Videocam';
-import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import {
     SignInButton,
@@ -8,7 +7,7 @@ import {
     SignedOut,
     UserButton
 } from '@clerk/nextjs'
-import Upload from '../UploadComp/UploadBtn';
+import Searchbar from '../Searchbar/Searchbar';
 
 const Navbar = () => {
     return (
@@ -25,10 +24,7 @@ const Navbar = () => {
                 </Link>
                 <Link className='hidden md:block' href={'/privacy-policy'}>Privacy</Link>
             </div>
-            <div className='flex flex-1 ring-1 ring-gray-500 p-2 gap-2 rounded'>
-                <input className='outline-none flex-1' type="text" placeholder='Search anything' />
-                <SearchIcon />
-            </div>
+            <Searchbar />
             <div className='flex'>
                 <SignedOut >
                     <SignInButton />
@@ -38,7 +34,7 @@ const Navbar = () => {
                     <Link href={'/upload'} className='flex gap-1 text-sm items-center bg-[--bg-black-tert] rounded-2xl py-1 px-2 '>
                         
                         <VideocamIcon />
-                        <span>Upload</span>
+                        <span className='hidden md:block'>Upload</span>
                     </Link>
                     
                     <UserButton />

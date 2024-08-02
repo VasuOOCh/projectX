@@ -1,14 +1,15 @@
 import { Video } from "@/lib/models";
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
 export const PUT = async (req: NextRequest, { params }: { params: any }) => {
-    
 
     try {
         const { id } = params;
         const { userId } = auth();
-    
+        console.log(userId);
+        
         if (!userId) {
             return NextResponse.json({
                 error : "Unauthorized"

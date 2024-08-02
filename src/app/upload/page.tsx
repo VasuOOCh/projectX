@@ -54,7 +54,7 @@ const UploadVideo = () => {
 
         <ReactQuill theme="snow" className='h-80' value={value} onChange={setValue} />
         <br />
-        <button className='bg-[--bg-black-tert] w-fit p-2 px-4 rounded-md' type='submit'>Upload</button>
+        <button className='bg-white text-black w-fit p-2 px-4 rounded-md' type='submit'>Upload</button>
         {
           state.error && (
             <span className='text-sm text-red-600'>{state.error}</span>

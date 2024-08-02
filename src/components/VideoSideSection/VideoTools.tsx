@@ -5,34 +5,34 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import Discussions from '../discussions/Discussions';
 import Questions from '../questions/Questions';
-import References from '../references/References';
+import PersonIcon from '@mui/icons-material/Person';
 
-const VideoTools = () => {
+const VideoTools = ({videoId, currentUserStr} : {videoId : string, currentUserStr : string}) => {
 
     const [activeSection, setactiveSection] = useState<string>("discussions")
 
     return (
         <div className='px-4  flex flex-col gap-4'>
-            <div className='flex justify-between items-center text-sm'>
-                <div className='videoToolsSection' onClick={() => setactiveSection("discussions")}>
+            <div className='flex gap-1 justify-between items-center text-sm'>
+                <div className='videoToolsSection flex-1' onClick={() => setactiveSection("discussions")}>
                     <ForumIcon className='text-[20px]' />
                     <h2>Discussions</h2>
                 </div>
-                <div className='videoToolsSection' onClick={() => setactiveSection("questions")}>
+                <div className='videoToolsSection flex-1' onClick={() => setactiveSection("questions")}>
                     <LocalFireDepartmentIcon className='text-[20px]' />
                     <h2>Questions</h2>
                 </div>
-                <div className='videoToolsSection' onClick={() => setactiveSection("references")}>
-                    <OpenInNewIcon className='text-[20px]' />
-                    <h2>References</h2>
+                <div className='videoToolsSection flex-1' onClick={() => setactiveSection("references")}>
+                    <PersonIcon className='text-[20px]' />
+                    <h2>Join Live</h2>
                 </div>
             </div>
 
             <div className='h-[500px]'>
                 {
                     activeSection == "discussions" ? (
-                        <div className='rounded-md bg-[--bg-black-sec] h-[100%]'>
-                            <Discussions />
+                        <div className='rounded-md bg-[--bg-black-sec] h-[100%] overflow-y-auto'>
+                            <Discussions currentUserStr={currentUserStr} videoId={videoId} />
                         </div>
 
                     ) : activeSection == "questions" ? (
@@ -41,7 +41,7 @@ const VideoTools = () => {
                         </div>
                     ) : (
                         <div className='rounded-md bg-[--bg-black-sec] h-[100%]'>
-                            <References />
+                            Live chat
                         </div>
                     )
                 }
